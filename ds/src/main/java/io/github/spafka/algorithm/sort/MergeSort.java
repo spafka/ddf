@@ -8,16 +8,17 @@ public class MergeSort {
         int[] ints = {2, 3, 1, 6, 5, 7};
         sort(ints, 0, ints.length - 1);
 
-        System.out.println(ints);
-
     }
 
 
     public static int[] sort(int[] a, int low, int high) {
+        System.out.println("sout %d,%d ".formatted(low,high));
         int mid = (low + high) / 2;
         if (low < high) {
+
             sort(a, low, mid);
             sort(a, mid + 1, high);
+            System.out.println("merge %d %d  ".formatted(low,high));
             //左右归并
             merge(a, low, mid, high);
         }
