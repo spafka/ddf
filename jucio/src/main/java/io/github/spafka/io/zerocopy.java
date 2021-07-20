@@ -1,6 +1,6 @@
 package io.github.spafka.io;
 
-import io.github.spafka.spark.util.Utils;
+import io.github.spafka.util.Utils;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -42,33 +42,33 @@ public class zerocopy {
 
 
     }
-
-    @Test
-    public void _1() throws IOException, InterruptedException {
-        File file = new File(FILE_PATH);
-
-        Utils.bytesToString(file.length());
-        Socket socket = new Socket(HOST, PORT);
-        Long time = (Long) Utils.timeTakenMs(new AbstractFunction0<Void>() {
-            @SneakyThrows
-            @Override
-            public Void apply() {
-                InputStream inputStream = new FileInputStream(file);
-                OutputStream outputStream = new DataOutputStream(socket.getOutputStream());
-
-                byte[] buffer = new byte[4096];
-                while (inputStream.read(buffer) >= 0) {
-                    outputStream.write(buffer);
-                }
-
-                outputStream.close();
-                socket.close();
-                inputStream.close();
-                return null;
-            }
-        })._2();
-        log.info("{}",time);
-
-
-    }
+//
+//    @Test
+//    public void _1() throws IOException, InterruptedException {
+//        File file = new File(FILE_PATH);
+//
+//        Utils.bytesToString(file.length());
+//        Socket socket = new Socket(HOST, PORT);
+//        Long time = (Long) Utils.ti(new AbstractFunction0<Void>() {
+//            @SneakyThrows
+//            @Override
+//            public Void apply() {
+//                InputStream inputStream = new FileInputStream(file);
+//                OutputStream outputStream = new DataOutputStream(socket.getOutputStream());
+//
+//                byte[] buffer = new byte[4096];
+//                while (inputStream.read(buffer) >= 0) {
+//                    outputStream.write(buffer);
+//                }
+//
+//                outputStream.close();
+//                socket.close();
+//                inputStream.close();
+//                return null;
+//            }
+//        })._2();
+//        log.info("{}",time);
+//
+//
+//    }
 }
